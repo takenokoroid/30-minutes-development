@@ -10,8 +10,8 @@
   };
 
   const formatUrl = (url: string): string => {
-    const target = url.split("/")[3].split("-").slice(-1)[0];
-    let result = `${NOTION_URL}/${target}`;
+    const notionId = url.split("-").slice(-1)[0];
+    let result = `${NOTION_URL}/${notionId}`;
     return result;
   };
 
