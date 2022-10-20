@@ -3,10 +3,22 @@
 
   let url = "";
   let inputRef: HTMLInputElement = null;
+  let divRef: HTMLDivElement = null;
+
   const NOTION_URL = "https://www.notion.so";
 
   const cutting = () => {
     console.log("cut");
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+      url = formatUrl(tabs[0].url);
+      tick().then(() => {
+        divRef.focus();
+        document.execCommand("paste");
+        tick().then(() => {
+          console.log(divRef.textContent);
+        });
+      });
+    });
   };
 
   const formatUrl = (url: string): string => {
@@ -33,6 +45,7 @@
   <button type="button" on:click={cutting}>cutting, URL</button>
   <button type="button" on:click={pickup}>pick up, URL</button>
   <input type="text" value={url} bind:this={inputRef} />
+  <div id="test" bind:this={divRef}>{url}</div>
 </div>
 
 <style>
