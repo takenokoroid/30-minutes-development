@@ -9,7 +9,7 @@
 
   const formatUrl = (url: string): string => {
     const notionId = url.includes("?p=")
-      ? url.split("?p=").at(0)
+      ? url.split("?p=").at(-1).split("&")[0]
       : url.split("-").at(-1);
     let result = `${NOTION_URL}/${notionId}`;
     return result;
