@@ -30,9 +30,8 @@
 
 <div>
   <h1>ピカピカ</h1>
-  <button type="button" on:click={pickup}>pick up, URL</button>
   <input type="text" value={url} bind:this={inputRef} />
-  <div id="test" bind:this={divRef}>{url}</div>
+  <button type="button" on:click={pickup}>pick up, URL</button>
 </div>
 
 <style>
