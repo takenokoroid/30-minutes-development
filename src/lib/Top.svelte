@@ -1,17 +1,17 @@
 <script lang="ts">
   import { tick } from "svelte";
+  import pickUpIcon from "../assets/pick-up.svg";
 
   let url = "";
   let inputRef: HTMLInputElement = null;
-  let divRef: HTMLDivElement = null;
-
-  const NOTION_URL = "https://www.notion.so";
 
   const formatUrl = (url: string): string => {
+    const NOTION_URL = new URL(url);
+    const PARSED_URL = NOTION_URL.href.split("/").slice(0, -1).join("/");
     const notionId = url.includes("?p=")
       ? url.split("?p=").at(-1).split("&")[0]
       : url.split("-").at(-1);
-    let result = `${NOTION_URL}/${notionId}`;
+    let result = `${PARSED_URL}/${notionId}`;
     return result;
   };
 
@@ -29,13 +29,20 @@
 </script>
 
 <div>
-  <h1>ピカピカ</h1>
+  <h1>pick up,pick up</h1>
+  <div>
+    <button type="button" on:click={pickup}>
+      <img src={pickUpIcon} class="icon" alt="Pick up" />
+    </button>
+  </div>
   <input type="text" value={url} bind:this={inputRef} />
-  <button type="button" on:click={pickup}>pick up, URL</button>
 </div>
 
 <style>
   div {
     width: 500px;
+  }
+  .icon {
+    width: 200px;
   }
 </style>
