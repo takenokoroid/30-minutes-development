@@ -3,8 +3,13 @@
 </script>
 
 <main>
-  <Top></Top>
+  <Top />
 </main>
 
 <style>
+  main {
+    max-width: 38rem;
+    padding: 2rem;
+    margin: auto;
+  }
 </style>
