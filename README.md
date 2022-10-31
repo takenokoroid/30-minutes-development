@@ -10,29 +10,23 @@
 
 ### Why?
 
-私のチームでは Notion を使ってチケット管理を行っています。
+私のチームでは Notion を使ってチケット管理を行っています。Notion は Github との連携を提供していますがセキュリティの関係上私のチームでは使用できません。
 
-Notion は Github との連携を提供していますがセキュリティの関係上私のチームでは使用できません。
-
-以上の条件下で PBI と issue を紐づけるために Notion ページの URL が必要でした。
-
-紐づけられた URL は String になりフィルターとして機能します。
+以上の条件で PBI と issue を紐づけるために Notion ページの URL が必要でした。紐づけられた URL は String になりフィルターとして機能します。
 
 Notion ページの URL は基本的には以下の形式をとります。
 
-`https://www.notion.so/{TEAM_NAME}/aaaabbbbcccc1234567890`
+```
+https://www.notion.so/{TEAM_NAME}/aaaabbbbcccc1234567890
+```
 
-通常であればそのままコピー＆ペーストをするだけです。
+通常であれば URL はユニークであるため、そのままコピー＆ペーストをするだけです。ただタイトルに半角文字が入ると URL はユニークではなくなります。
 
-ただタイトルに半角文字が入ると URL は姿を変えます。
+```
+https://www.notion.so/{TEAM_NAME}/why-did-you-ask-EVA-aaaabbbbcccc1234567890
+```
 
-`https://www.notion.so/{TEAM_NAME}/why-did-you-ask-EVA-aaaabbbbcccc1234567890`
-
-これはタイトルが変更されるたびに書き変わります。
-
-URL としてはリダイレクトされるため問題ありませんが、URL は紐づけ時には String になります。
-
-つまりタイトルが変更されると PBI と issue の連携が面倒になります。
+これはタイトルが変更されるたびに書き変わります。URL としてはリダイレクトされるため問題ありませんが、URL は紐づけ時には String になります。つまりタイトルが変更されると PBI と issue の連携が面倒になります。
 
 私たちにはユニークな URL を得るためにタイトル箇所を切り取るツールが必要でした。
 
@@ -40,11 +34,15 @@ URL としてはリダイレクトされるため問題ありませんが、URL 
 
 1. npm -i
 
-`npm install`
+```bash
+$ npm install
+```
 
 2. building...
 
-`npm run relative-build`
+```bash
+$ npm run relative-build
+```
 
 3. deploy
 
