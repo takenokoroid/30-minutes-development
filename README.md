@@ -1,48 +1,57 @@
-# Svelte + TS + Vite
+# Pick up, Pick up（ピカピカ）
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+## Contents
 
-## Recommended IDE Setup
+- [Pick up, Pick up（ピカピカ）](#pick-up-pick-upピカピカ)
+  - [Contents](#contents)
+    - [Why?](#why)
+    - [Installation](#installation)
+    - [Usage](#usage)
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+### Why?
 
-## Need an official Svelte framework?
+私のチームでは Notion を使ってチケット管理を行っています。Notion は Github との連携を提供していますがセキュリティの関係上私のチームでは使用できません。
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+以上の条件で PBI と issue を紐づけるために Notion ページの URL が必要でした。紐づけられた URL は String になりフィルターとして機能します。
 
-## Technical considerations
+Notion ページの URL は基本的には以下の形式をとります。
 
-**Why use this over SvelteKit?**
-
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-  `vite dev` and `vite build` wouldn't work in a SvelteKit environment, for example.
-
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `allowJs` in the TS template?**
-
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
 ```
+https://www.notion.so/{TEAM_NAME}/aaaabbbbcccc1234567890
+```
+
+通常であれば URL はユニークであるため、そのままコピー＆ペーストをするだけです。ただタイトルに半角文字が入ると URL はユニークではなくなります。
+
+```
+https://www.notion.so/{TEAM_NAME}/why-did-you-ask-EVA-aaaabbbbcccc1234567890
+```
+
+これはタイトルが変更されるたびに書き変わります。URL としてはリダイレクトされるため問題ありませんが、URL は紐づけ時には String になります。つまりタイトルが変更されると PBI と issue の連携が面倒になります。
+
+私たちにはユニークな URL を得るためにタイトル箇所を切り取るツールが必要でした。
+
+### Installation
+
+1. npm -i
+
+```bash
+$ npm install
+```
+
+2. building...
+
+```bash
+$ npm run relative-build
+```
+
+3. deploy
+
+以下の手順 2 に従いインストールしてください。（テストであることを十分に理解すること）
+
+https://support.google.com/chrome/a/answer/2714278?hl=ja
+
+### Usage
+
+対象となる Notion を開いた状態で拡張機能を動作させましょう。
+
+Notion ページを開いている状態。テーブルビューで Notion ページをポップアップしている状態で使用できます。
